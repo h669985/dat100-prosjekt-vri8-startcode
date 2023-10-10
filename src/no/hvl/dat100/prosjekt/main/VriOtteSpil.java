@@ -9,7 +9,7 @@ public class VriOtteSpil {
 
 	public static void main(String[] args) {
 
-		// opprett kontroll delen
+		// opprett kontroll delen (push test)
 		final Kontroll kontroll = new Kontroll();
 
 		// start utsyn (Swing grensesnitt)
