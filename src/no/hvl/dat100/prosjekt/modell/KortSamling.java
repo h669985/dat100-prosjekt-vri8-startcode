@@ -100,7 +100,7 @@ public class KortSamling {
 				return samling[i];
 			}
 		}
-		return null; // If the collection is empty
+		return null; // Hvis samlingen er tom
 	}
 
 

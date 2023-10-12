@@ -27,12 +27,9 @@ public class Spill {
 	public final static int ANTALL_KORT_START = Regler.ANTALL_KORT_START;
 	
 	public Spill() {
-		
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.constructor("Spill"));
-		// TODO - END
-		
+		nord = new NordSpiller(Spillere.NORD);
+		syd = new SydSpiller(Spillere.SYD);
+		bord = new Bord();
 	}
 	
 	/**
@@ -41,13 +38,7 @@ public class Spill {
 	 * @return referanse/peker bord objekt.
 	 */
 	public Bord getBord() {
-		
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - END
-		
+		return bord;
 	}
 	
 	/**
@@ -56,13 +47,7 @@ public class Spill {
 	 * @return referanse/peker til syd spiller.
 	 */
 	public ISpiller getSyd() {
-		
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - END
-		
+		return syd;
 	}
 
 	/**
@@ -71,12 +56,7 @@ public class Spill {
 	 * @return referanse/peker til nord.
 	 */
 	public ISpiller getNord() {
-		
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - END
+		return nord;
 	}
 
 	/**

@@ -18,7 +18,7 @@ public class KortUtils {
 		// Hent arrayet med kort fra KortSamling-objektet
 		Kort[] bunke = samling.getSamling();
 
-		// Gå gjennom arrayet, starter fra dey andre kortet (indeks 1)
+		// Gå gjennom arrayet, starter fra det andre kortet (indeks 1)
 		for (int i = 1; i < bunke.length; i++) {
 			// Velg gjeldende kort
 			Kort gjeldendeKort = bunke[i];
