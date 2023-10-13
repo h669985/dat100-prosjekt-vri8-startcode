@@ -166,11 +166,13 @@ public class KortSamling {
 	 */
 	public Kort[] getAllekort() {
 	Kort[] bunke = new Kort[antall];
-	for (int i = 0; i < samling.length; i++){
-		if (har(samling[i])) {
-			bunke[i] = samling[i];
-		}
-	}
+	int index = 0;
+        for (Kort kort : samling) {
+            if (har(kort)) {
+                bunke[index] = kort;
+                index++;
+            }
+        }
 	return bunke;
 	}
 	
