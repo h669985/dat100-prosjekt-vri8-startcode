@@ -80,9 +80,11 @@ public class Spill {
 	 * 
 	 */
 	private void delutKort() {
+		KortSamling bunkeFra = getBord().getBunkeFra();
+
 		for (int i = 0; i < ANTALL_KORT_START; i++) {
-			getNord().leggTilKort(getBord().getBunkeFra().taSiste());
-			getSyd().leggTilKort(getBord().getBunkeFra().taSiste());
+			nord.leggTilKort(bunkeFra.taSiste());
+			syd.leggTilKort(bunkeFra.taSiste());
 		}
 	}
 
@@ -114,8 +116,18 @@ public class Spill {
 	 * @return handlingen som skal utføres av kontroll delen.
 	 */
 	public Handling nesteHandling(ISpiller spiller) {
-		return spiller.nesteHandling(spiller.getHand().taSiste());
+		Kort kort = spiller.getHand().taSiste();
+
+		if (kort != null && spiller.getAntallTrekk() < Regler.maksTrekk()) {
+			return new Handling(HandlingsType.LEGGNED, kort);
+		} else if (spiller.getAntallTrekk() < Regler.maksTrekk()) {
+			return new Handling(HandlingsType.TREKK, trekkFraBunke(spiller));
+		} else {
+			return new Handling(HandlingsType.FORBI, null);
+		}
 	}
+
+
 
 	/**
 	 * Metoden spiller et kort. Den sjekker at spiller har kortet. Dersom det er

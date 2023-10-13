@@ -17,7 +17,7 @@ public class TestKontroll {
 		kontroll.spillAuto();
 	}
 
-	private static int ANTALL_SPILL = 10;
+	private static int ANTALL_SPILL = 100;
 	
 	@Test
 	public void TestAutoSpillRandom() {
