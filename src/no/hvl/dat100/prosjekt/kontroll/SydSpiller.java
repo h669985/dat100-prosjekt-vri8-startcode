@@ -13,7 +13,6 @@ import no.hvl.dat100.prosjekt.modell.Kort;
  *
  */
 public class SydSpiller extends Spiller {
-
 	/**
 	 * Konstruktør.
 	 * 
@@ -37,11 +36,24 @@ public class SydSpiller extends Spiller {
 	@Override
 	public Handling nesteHandling(Kort topp) {
 
-		// TODO - START
-		/* first-fit strategi */
-	
-		throw new UnsupportedOperationException(TODO.method());
-	
-		// TODO - END
+		Kort[] hand = getHand().getAllekort();
+		Handling handling = null;
+
+		for (Kort kort : hand) {
+			if (Regler.kanLeggeNed(kort, topp)) {
+				handling = new Handling(HandlingsType.LEGGNED, kort);
+				break;
+			}
+		}
+
+		if (handling == null) {
+			if (getAntallTrekk() < Regler.maksTrekk()) {
+				handling = new Handling(HandlingsType.TREKK, null);
+			} else {
+				handling = new Handling(HandlingsType.FORBI, null);
+			}
+		}
+
+		return handling;
 	}
 }
