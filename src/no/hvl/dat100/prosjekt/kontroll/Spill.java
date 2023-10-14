@@ -143,8 +143,8 @@ public class Spill {
 	 */
 	public boolean leggnedKort(ISpiller spiller, Kort kort) {
 		if (spiller.getHand().har(kort)) { // Sjekker om spiller har kort i hånden
-			getBord().leggNedBunkeTil(kort); // Spiller et kort
 			spiller.fjernKort(kort); // Fjerner kortet fra hånden til spilleren
+			getBord().leggNedBunkeTil(kort); // Spiller kortet
 			spiller.setAntallTrekk(0); // Nulltiller antall ganger spilleren har trukket kort.
 			return true;
 		}
@@ -180,14 +180,14 @@ public class Spill {
 			case TREKK:
 				return trekkFraBunke(spiller);
 
-			case FORBI:
-				forbiSpiller(spiller);
-				return null;
-
-			case LEGGNED : default: //Tydligjøre LEGGNED case, men blir behandlet som default case, avhengig at vi alltid får rett handling
+			case LEGGNED:
 				Kort kortned = handling.getKort();
 				leggnedKort(spiller, kortned);
 				return kortned;
+
+			default:
+				forbiSpiller(spiller);
+				return null;
 		}
 	}
 
