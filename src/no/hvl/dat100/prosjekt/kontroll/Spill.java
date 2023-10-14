@@ -116,9 +116,9 @@ public class Spill {
 	 * @return handlingen som skal utføres av kontroll delen.
 	 */
 	public Handling nesteHandling(ISpiller spiller) {
-		Kort kort = spiller.getHand().taSiste();
+		Kort kort = spiller.getHand().seSiste(); // Må finne ut hvorfor vi får infninte loops, taSiste(); gir validert Junit test, men fører til juks
 
-		if (kort != null && spiller.getAntallTrekk() < Regler.maksTrekk()) {
+		if (kort != null) {
 			return new Handling(HandlingsType.LEGGNED, kort);
 		} else if (spiller.getAntallTrekk() < Regler.maksTrekk()) {
 			return new Handling(HandlingsType.TREKK, trekkFraBunke(spiller));
@@ -174,15 +174,20 @@ public class Spill {
 	 * @return kort som trekkes, kort som spilles eller null ved forbi.
 	 */
 	public Kort utforHandling(ISpiller spiller, Handling handling) {
-		Kort kort = handling.getKort();
-		if (handling.getType() == HandlingsType.TREKK) {
-            return trekkFraBunke(spiller);
-		} else if (handling.getType() == HandlingsType.LEGGNED) {
-			leggnedKort(spiller, handling.getKort());
-			return kort;
-		} else {
-			forbiSpiller(spiller);
-			return null;
+		HandlingsType type = handling.getType();
+
+		switch (type) {
+			case TREKK:
+				return trekkFraBunke(spiller);
+
+			case FORBI:
+				forbiSpiller(spiller);
+				return null;
+
+			case LEGGNED : default: //Tydligjøre LEGGNED case, men blir behandlet som default case, avhengig at vi alltid får rett handling
+				Kort kortned = handling.getKort();
+				leggnedKort(spiller, kortned);
+				return kortned;
 		}
 	}
 
