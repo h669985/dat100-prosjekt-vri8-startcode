@@ -142,11 +142,13 @@ public class Spill {
 	 * @return true dersom spilleren har kortet, false ellers.
 	 */
 	public boolean leggnedKort(ISpiller spiller, Kort kort) {
-		if (spiller.getHand().har(kort)) {
-			getBord().leggNedBunkeTil(kort);
-			spiller.fjernKort(kort);
+		if (spiller.getHand().har(kort)) { // Sjekker om spiller har kort i hånden
+			getBord().leggNedBunkeTil(kort); // Spiller et kort
+			spiller.fjernKort(kort); // Fjerner kortet fra hånden til spilleren
+			spiller.setAntallTrekk(0); // Nulltiller antall ganger spilleren har trukket kort.
 			return true;
-		} return false;
+		}
+		return false;
 	}
 
 	/**
