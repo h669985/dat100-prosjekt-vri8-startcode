@@ -40,7 +40,7 @@ public class SydSpiller extends Spiller {
 		Handling handling = null;
 
 		for (Kort kort : hand) {
-			if (Regler.kanLeggeNed(kort, topp)) {
+			if (kort != null && Regler.kanLeggeNed(kort, topp)) {
 				handling = new Handling(HandlingsType.LEGGNED, kort);
 				break;
 			}

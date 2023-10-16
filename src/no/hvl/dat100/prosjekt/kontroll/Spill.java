@@ -10,6 +10,7 @@ import no.hvl.dat100.prosjekt.kontroll.spill.Handling;
 import no.hvl.dat100.prosjekt.kontroll.spill.Spillere;
 import no.hvl.dat100.prosjekt.modell.Kort;
 import no.hvl.dat100.prosjekt.modell.KortUtils;
+import no.hvl.dat100.prosjekt.kontroll.SydSpiller.*;
 
 /**
  * Klassen har objektvariaber som er referanser til de spillerne, nord og syd
@@ -116,15 +117,13 @@ public class Spill {
 	 * @return handlingen som skal utføres av kontroll delen.
 	 */
 	public Handling nesteHandling(ISpiller spiller) {
-		Kort kort = spiller.getHand().seSiste(); // Må finne ut hvorfor vi får infninte loops, taSiste(); gir validert Junit test, men fører til juks
-
-		if (kort != null) {
-			return new Handling(HandlingsType.LEGGNED, kort);
-		} else if (spiller.getAntallTrekk() < Regler.maksTrekk()) {
-			return new Handling(HandlingsType.TREKK, trekkFraBunke(spiller));
+		Handling handling;
+		if (spiller.hvem() == Spillere.SYD) {
+			handling = syd.nesteHandling(getBord().seOversteBunkeTil());
 		} else {
-			return new Handling(HandlingsType.FORBI, null);
+			handling = nord.nesteHandling(getBord().seOversteBunkeTil());
 		}
+		return handling;
 	}
 
 

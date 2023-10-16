@@ -30,7 +30,7 @@ public class NordSpiller extends Spiller {
 
 		// Gå igjennom kort å finn ut hvilke som kan spilles
 		for (Kort k : hand) {
-			if (Regler.kanLeggeNed(k, topp)) {
+			if (k != null && Regler.kanLeggeNed(k, topp)) {
 				if (Regler.atter(k)) {
 					attere.leggTil(k);
 				} else {
