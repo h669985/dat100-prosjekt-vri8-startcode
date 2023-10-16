@@ -145,7 +145,6 @@ public class KortSamling {
 	 */
 
 	public boolean fjern(Kort kort) {
-		if (kort != null) {
 			for (int i = 0; i < samling.length; i++) {
 				if (samling[i] != null && samling[i].equals(kort)) {
 					samling[i] = null;
@@ -153,7 +152,6 @@ public class KortSamling {
 					return true;
 				}
 			}
-		}
 		return false;
 	}
 
