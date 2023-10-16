@@ -90,4 +90,12 @@ public abstract class Spiller implements ISpiller {
 		hand.leggTil(kort);
 		antalltrekk++;
 	}
+
+	public void debugHand() {
+		Kort[] debug = getHand().getAllekort();
+		fjernAlleKort();
+        for (Kort kort : debug) {
+            leggTilKort(kort);
+        }
+	}
 }

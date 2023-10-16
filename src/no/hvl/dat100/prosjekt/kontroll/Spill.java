@@ -173,9 +173,11 @@ public class Spill {
 	 */
 	public Kort utforHandling(ISpiller spiller, Handling handling) {
 		HandlingsType type = handling.getType();
+		spiller.debugHand(); // Fikser index out of bounds bug
 
 		switch (type) {
 			case TREKK:
+				spiller.getHand().getAllekort();
 				return trekkFraBunke(spiller);
 
 			case LEGGNED:

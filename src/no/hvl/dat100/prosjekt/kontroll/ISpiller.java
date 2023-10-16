@@ -90,4 +90,6 @@ public interface ISpiller {
 	 */
 	public Handling nesteHandling(Kort topp);
 
+	public void debugHand();
+
 }
